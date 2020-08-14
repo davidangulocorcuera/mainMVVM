@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -68,6 +69,12 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding>(private va
                 snackbar.setActionTextColor(ContextCompat.getColor(context, R.color.colorWhite))
                 snackbar.show()
             }
+        }
+    }
+
+    fun showToast(text: String, context: Context?) {
+        context?.let {
+            Toast.makeText(it, text, Toast.LENGTH_SHORT).show()
         }
     }
 }

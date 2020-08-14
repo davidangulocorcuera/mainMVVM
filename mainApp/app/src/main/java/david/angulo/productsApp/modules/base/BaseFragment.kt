@@ -69,5 +69,8 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding>(private va
         get() {
             return activity as? BaseActivity<*, *>
         }
+    fun showToast(text: String, context: Context?) {
+        baseActivity?.showToast(text, context)
+    }
 
 }
