@@ -1,6 +1,7 @@
 package david.angulo.productsApp.modules.home
 
 
+import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import david.angulo.productsApp.databinding.FragmentHomeBinding
@@ -9,6 +10,8 @@ import david.angulo.productsApp.modules.base.BaseFragment
 import david.angulo.productsApp.modules.home.adapter.InputsAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import david.angulo.productsApp.model.Driver
+import david.angulo.productsApp.modules.driverSelected.DriverSelectFragment
+import david.angulo.productsApp.modules.utils.ConstantsPlatform
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -17,7 +20,6 @@ class HomeFragment : BaseFragment<HomeFragmentViewModel, FragmentHomeBinding>(
     HomeFragmentViewModel::class.java
 ) {
 
-    private var driversAux = ArrayList<Driver>()
     private var drivers = ArrayList<Driver>()
 
     private lateinit var mInputsAdapter: InputsAdapter
@@ -88,7 +90,8 @@ class HomeFragment : BaseFragment<HomeFragmentViewModel, FragmentHomeBinding>(
         btnChooseDriver.setOnClickListener {
             val isError = checkCompleteError()
             if (!isError) {
-                showToast(drivers[Random().nextInt(drivers.size)].name!!, context)
+
+                goToDriverSelectedFragment(drivers[Random().nextInt(drivers.size)])
                 drivers.clear()
                 mInputsAdapter.notifyDataSetChanged()
                 btnChooseDriver.visibility = View.GONE
@@ -97,5 +100,11 @@ class HomeFragment : BaseFragment<HomeFragmentViewModel, FragmentHomeBinding>(
         }
 
 
+    }
+
+    private fun goToDriverSelectedFragment(driver: Driver) {
+        val bundle: Bundle = Bundle()
+        bundle.putSerializable(ConstantsPlatform.DRIVER,driver)
+        navigator.navigate(DriverSelectFragment(), true, LOG_TAG,bundle,R.id.fragmentContainerHome)
     }
 }

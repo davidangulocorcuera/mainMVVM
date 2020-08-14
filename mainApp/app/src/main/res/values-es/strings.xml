@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Who Drive</string>
+    <string name="who_drive">Seleccionador de conductor aleatorio V - 1.0.0</string>
+    <string name="home_info">Para añadir un nuevo conductor pulsa el botón que pone "Añadir conductor"</string>
+    <string name="add_driver">Añadir conductor</string>
+    <string name="driver">Conductor</string>
+    <string name="choose_driver">Elegir conductor</string>
 </resources>
